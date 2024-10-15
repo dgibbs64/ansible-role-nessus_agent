@@ -1,0 +1,8 @@
+---
+# defaults for nessus_agent
+
+nessus_agent_activation_code:
+nessus_agent_nessus_server:
+nessus_agent_port:
+nessus_agent_key:
+nessus_agent_group:

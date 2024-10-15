@@ -1,0 +1,42 @@
+---
+# defaults for nessus_agent
+
+- name: "Check nessus_agent_activation_code is defined"
+  ansible.builtin.assert:
+    that:
+      - "nessus_agent_activation_code is defined"
+      - "nessus_agent_activation_code is string"
+    fail_msg: "nessus_agent_activation_code is not defined"
+  quiet: true
+
+- name: "Check nessus_agent_nessus_server is defined"
+  ansible.builtin.assert:
+    that:
+      - "nessus_agent_nessus_server is defined"
+      - "nessus_agent_nessus_server is string"
+    fail_msg: "nessus_agent_nessus_server is not defined"
+  quiet: true
+
+- name: "Check nessus_agent_port is defined"
+  ansible.builtin.assert:
+    that:
+      - "nessus_agent_port is defined"
+      - "nessus_agent_port is int"
+    fail_msg: "nessus_agent_port is not defined"
+  quiet: true
+
+- name: "Check nessus_agent_key is defined"
+  ansible.builtin.assert:
+    that:
+      - "nessus_agent_key is defined"
+      - "nessus_agent_key is string"
+    fail_msg: "nessus_agent_key is not defined"
+  quiet: true
+
+- name: "Check nessus_agent_group is defined"
+  ansible.builtin.assert:
+    that:
+      - "nessus_agent_group is defined"
+      - "nessus_agent_group is string"
+    fail_msg: "nessus_agent_group is not defined"
+    quiet: true
