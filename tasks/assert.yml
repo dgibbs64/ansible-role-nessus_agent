@@ -41,7 +41,7 @@
     fail_msg: "nessus_agent_group is not defined"
     quiet: true
 
-- : "Test nessus_agent_state is defined"
+- name: "Test nessus_agent_state is defined"
   ansible.builtin.assert:
     that:
       - nessus_agent_state is defined
