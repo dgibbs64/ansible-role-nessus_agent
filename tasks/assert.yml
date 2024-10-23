@@ -9,6 +9,14 @@
     fail_msg: "nessus_agent_activation_code is not defined"
     quiet: true
 
+- name: "Test nessus_agent_force_link is defined"
+  ansible.builtin.assert:
+    that:
+      - nessus_agent_force_link is defined
+      - nessus_agent_force_link is boolean
+    fail_msg: "nessus_agent_force_link is not defined"
+    quiet: true
+
 - name: "Test nessus_agent_nessus_server is defined"
   ansible.builtin.assert:
     that:
@@ -40,3 +48,4 @@
       - nessus_agent_state is string
     fail_msg: "nessus_agent_state is not defined"
     quiet: true
+
