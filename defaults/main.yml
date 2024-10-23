@@ -6,3 +6,4 @@ nessus_agent_group:
 nessus_agent_nessus_server:
 nessus_agent_port:
 nessus_agent_state: present
+nessus_agent_force_link: false
