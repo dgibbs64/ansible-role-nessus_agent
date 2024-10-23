@@ -1,5 +1,5 @@
 ---
 - name: "Remove Nessus Agent"
   ansible.builtin.dnf:
-    name: nessus-agent
+    name: NessusAgent
     state: absent
