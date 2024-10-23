@@ -29,7 +29,7 @@
   ansible.builtin.assert:
     that:
       - nessus_agent_port is defined
-      - nessus_agent_port is int
+      - nessus_agent_port is integer
     fail_msg: "nessus_agent_port is not defined"
     quiet: true
 

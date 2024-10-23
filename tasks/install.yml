@@ -1,12 +1,12 @@
 ---
 - name: "Install Nessus Agent"
   ansible.builtin.dnf:
-    name: nessus-agent
+    name: NessusAgent
     state: present
 
 - name: "Start and enable Nessus Agent service"
   ansible.builtin.systemd:
-    name: "nessus-agent"
+    name: "nessusagent"
     state: started
     enabled: true
 
