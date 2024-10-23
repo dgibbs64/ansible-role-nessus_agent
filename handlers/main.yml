@@ -1,6 +1,5 @@
 ---
 - name: "Restart Nessus Agent service"
   ansible.builtin.systemd:
-    name: "nessus-agent"
+    name: "nessusagent"
     state: restarted
-  notify: restart nessus-agent
