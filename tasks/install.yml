@@ -18,7 +18,7 @@
 
 - name: "Extract linked hostname"
   ansible.builtin.set_fact:
-    nessus_linked_hostname: "{{ nessus_agent_link_status.stdout | regex_search('Linked to\\s+([\\w\\.-]+)', '\\1') }}"
+    nessus_linked_hostname: "{{ nessus_agent_link_status.stdout | regex_search('Linked to:\\s+([\\w\\.-]+):\\d+', '\\1') }}"
   when: "'Linked to' in nessus_agent_link_status.stdout"
 
 - name: "List linked hostname"
