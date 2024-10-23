@@ -33,12 +33,12 @@
     fail_msg: "nessus_agent_port is not defined"
     quiet: true
 
-- name: "Test nessus_agent_group is defined"
+- name: "Test nessus_agent_groups is defined"
   ansible.builtin.assert:
     that:
-      - nessus_agent_group is defined
-      - nessus_agent_group is string
-    fail_msg: "nessus_agent_group is not defined"
+      - nessus_agent_groups is defined
+      - nessus_agent_groups is string
+    fail_msg: "nessus_agent_groups is not defined"
     quiet: true
 
 - name: "Test nessus_agent_state is defined"

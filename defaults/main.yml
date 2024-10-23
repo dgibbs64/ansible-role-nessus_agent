@@ -3,7 +3,7 @@
 
 nessus_agent_activation_code:
 nessus_agent_force_link: false
-nessus_agent_group:
+nessus_agent_groups:
 nessus_agent_nessus_server:
 nessus_agent_port:
 nessus_agent_state: present
