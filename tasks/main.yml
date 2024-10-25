@@ -19,3 +19,4 @@
 
     - name: "Install Nessus Agent"
       ansible.builtin.include_tasks: install.yml
+      when: nessus_agent_state == "present"
