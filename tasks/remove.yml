@@ -3,3 +3,8 @@
   ansible.builtin.dnf:
     name: NessusAgent
     state: absent
+
+- name: "Remove /opt/nessus_agent"
+  ansible.builtin.file:
+    path: "/opt/nessus_agent"
+    state: absent
