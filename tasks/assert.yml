@@ -48,4 +48,3 @@
       - nessus_agent_state is string
     fail_msg: "nessus_agent_state is not defined"
     quiet: true
-
