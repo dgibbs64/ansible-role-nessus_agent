@@ -13,10 +13,13 @@
 - name: "Become block"
   become: true
   block:
-    - name: "Remove Nessus Agent"
-      ansible.builtin.include_tasks: remove.yml
-      when: nessus_agent_state == "absent"
-
     - name: "Install Nessus Agent"
       ansible.builtin.include_tasks: install.yml
       when: nessus_agent_state == "present"
+
+    - name: "Link Nessus Agent"
+      ansible.builtin.include_tasks: link.yml
+
+    - name: "Remove Nessus Agent"
+      ansible.builtin.include_tasks: remove.yml
+      when: nessus_agent_state == "absent"
