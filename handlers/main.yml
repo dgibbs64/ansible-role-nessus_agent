@@ -1,5 +1,10 @@
 ---
 - name: "Restart Nessus Agent service"
-  ansible.builtin.systemd:
-    name: "nessusagent"
+  ansible.builtin.service:
+    name: nessusagent
     state: restarted
+
+- name: "Create link_key file"
+  ansible.builtin.copy:
+    content: "{{ nessus_agent_activation_code }}"
+    dest: /opt/nessus_agent/link_key
