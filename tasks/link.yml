@@ -37,7 +37,7 @@
 - name: "Set nessus_agent_link_required"
   ansible.builtin.set_fact:
     nessus_agent_link_required: true
-  when: not nessus_agent_linked or nessus_agent_force_link or (nessus_agent_linked_hostname is defined and nessus_agent_linked_hostname != nessus_agent_nessus_server) or (not link_key_file.stat.exists) or (link_key_file.stat.exists and (link_key_content.content | b64decode) != nessus_agent_activation_code)
+  when: not nessus_agent_linked or nessus_agent_force_link or (nessus_agent_linked_hostname is defined and nessus_agent_linked_hostname not in [nessus_agent_nessus_server, "cloud.tenable.com"]) or (not link_key_file.stat.exists) or (link_key_file.stat.exists and (link_key_content.content | b64decode) != nessus_agent_activation_code)
 
 - name: "Display if agent link is required"
   ansible.builtin.debug:
@@ -49,10 +49,25 @@
   changed_when: true
   when: (nessus_agent_link_required | default(false) and nessus_agent_linked) or (nessus_agent_state == "absent" and nessus_agent_linked)
 
-- name: "Link Nessus Agent"
-  ansible.builtin.command: "/opt/nessus_agent/sbin/nessuscli agent link --key={{ nessus_agent_activation_code }} --groups={{ nessus_agent_groups }} --host={{ nessus_agent_nessus_server }} --port={{ nessus_agent_port }}"
-  changed_when: true
+- name: "Remove old tag file"
+  ansible.builtin.file:
+    path: "/etc/tenable_tag"
+    state: absent
   when: nessus_agent_link_required | default(false) and nessus_agent_state == "present"
-  notify:
-    - "Restart Nessus Agent service"
-    - "Create link_key file"
+
+- name: "Agent link block"
+  block:
+    - name: "Link Nessus Agent"
+      ansible.builtin.command: "/opt/nessus_agent/sbin/nessuscli agent link --key={{ nessus_agent_activation_code }} --groups={{ nessus_agent_groups }} --host={{ nessus_agent_nessus_server }} --port={{ nessus_agent_port }}"
+      changed_when: true
+      notify:
+        - "Restart Nessus Agent service"
+        - "Create link_key file"
+  rescue:
+    - name: "Link Nessus Agent (cloud.tenable.com fallback)"
+      ansible.builtin.command: "/opt/nessus_agent/sbin/nessuscli agent link --key={{ nessus_agent_activation_code }} --groups={{ nessus_agent_groups }} --host=cloud.tenable.com --port=443"
+      changed_when: true
+      notify:
+        - "Restart Nessus Agent service"
+        - "Create link_key file"
+  when: nessus_agent_link_required | default(false) and nessus_agent_state == "present"
