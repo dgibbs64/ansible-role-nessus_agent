@@ -37,7 +37,7 @@
 - name: "Set nessus_agent_link_required"
   ansible.builtin.set_fact:
     nessus_agent_link_required: true
-  when: not nessus_agent_linked or nessus_agent_force_link or (nessus_agent_linked_hostname is defined and nessus_agent_linked_hostname not in [nessus_agent_nessus_server, "cloud.tenable.com"]) or (not link_key_file.stat.exists) or (link_key_file.stat.exists and (link_key_content.content | b64decode) != nessus_agent_activation_code)
+  when: not nessus_agent_linked or nessus_agent_force_link or (nessus_agent_linked_hostname != nessus_agent_nessus_server and nessus_agent_linked_hostname != "cloud.tenable.com") or (not link_key_file.stat.exists) or (link_key_file.stat.exists and (link_key_content.content | b64decode) != nessus_agent_activation_code)
 
 - name: "Display if agent link is required"
   ansible.builtin.debug:
