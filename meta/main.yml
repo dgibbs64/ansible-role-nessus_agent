@@ -1,0 +1,26 @@
+---
+galaxy_info:
+  author: Daniel Gibbs
+  company: none
+  description: Installs and configures the Nessus Agent on RHEL-based systems
+  license: MIT
+  min_ansible_version: '2.13'
+  namespace: dgibbs64
+  role_name: nessus_agent
+
+  platforms:
+    - name: EL
+      versions:
+        - '7'
+        - '8'
+        - '9'
+    - name: Amazon
+      versions:
+        - all
+
+  galaxy_tags:
+    - system
+    - security
+    - nessus
+
+dependencies: []
