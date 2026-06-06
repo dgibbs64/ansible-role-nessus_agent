@@ -1,7 +1,7 @@
 ---
 # defaults for nessus_agent
 
-nessus_agent_activation_code:
+nessus_agent_activation_code: ""
 nessus_agent_force_link: false
 nessus_agent_groups:
 nessus_agent_nessus_server:
