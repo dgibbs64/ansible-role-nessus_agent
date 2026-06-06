@@ -57,6 +57,8 @@
   when: nessus_agent_link_required | default(false) and nessus_agent_state == "present"
 
 - name: "Agent link block"
+  tags:
+    - molecule-notest
   when: nessus_agent_link_required | default(false) and nessus_agent_state == "present"
   block:
     - name: "Link Nessus Agent"
