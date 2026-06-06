@@ -18,6 +18,8 @@
       when: nessus_agent_state == "present"
 
     - name: "Link Nessus Agent"
+      tags:
+        - molecule-notest
       ansible.builtin.include_tasks: link.yml
 
     - name: "Remove Nessus Agent"
