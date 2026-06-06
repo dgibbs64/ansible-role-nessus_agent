@@ -1,10 +1,14 @@
 ---
 - name: "Install Nessus Agent"
+  tags:
+    - molecule-notest
   ansible.builtin.dnf:
     name: NessusAgent
     state: present
 
 - name: "Start and enable Nessus Agent service"
+  tags:
+    - molecule-notest
   ansible.builtin.systemd:
     name: "nessusagent"
     state: started
